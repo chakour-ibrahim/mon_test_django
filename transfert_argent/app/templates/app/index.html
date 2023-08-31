@@ -1,0 +1,57 @@
+{% extends "app/base.html" %}
+{% block content %}
+
+    <h2>Tableau De Bord</h2>
+    <div class="promo_card">
+        <h1>Bienvenue à notre interface de transfert d'argent</h1>
+        <!-- <span>Lorem ipsum dolor sit amet.</span> -->
+        <!-- <button>Se Connecter à Son Compte</button> -->
+        <a href="http://127.0.0.1:8000/login_register" type="button" style="background-color: white;padding: 10px;border-radius: inherit; color: black;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ModalForm">
+            Se Connecter/S'enregister
+        </a>
+        <div>
+            <br>
+        </div>
+    </div>
+    <div><br></div>
+    <h1 class="display-1">Liste de toutes les transactions effectuées</h1>
+    <div><br></div>
+    <div class="table-data">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>N*</th>
+                    <th>Numéro Expediteur</th>
+                    <th>Nom Expediteur</th>
+                    <th>type Requéte</th>
+                    <th>Numéro Destinataire</th>
+                    <th>Nom Destinataire</th>
+                    <th>Montant</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ transaction.expediteur_name }}</td>
+                        <td>{{ transaction.expediteur_numero }}</td>
+                        <td>{{ transaction.type_requete }}</td>
+                        <td>{{ transaction.destinataire_name }}</td>
+                        <td>{{ transaction.destinataire_numero }}</td>
+                        <td>{{ transaction.montant_requete }}</td>
+                        <td>{{ transaction.statut }}</td>
+                        <td>{{ transaction.date }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+{% endblock %}
+
+
+
+{% block js %}
+
+{% endblock %}

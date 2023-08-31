@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8" />
+        <title>TEST | TRANSFERT ARGENT</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+        <!-- Font Awesome Cdn Link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+        <header class="header">
+            <div class="logo">
+                <a href="#">TRANSFERT ARGENT</a>
+                <div class="search_box">
+                    <input type="text" placeholder="Chercher une transaction particuliere">
+                    <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div class="header-icons">
+                <i class="fas fa-bell"></i>
+                <div class="account">
+                    <img src="./pic/img.jpg" alt="">
+                    <h4>Jhon Viek</h4>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <nav>
+                <div class="side_navbar">
+                    <span>Menu Principal</span>
+                    <a href="http://127.0.0.1:8000/transactionuserid/{{ infoutilisateur.id_utilisateur }}" class="active">Transactions</a>
+                    <a href="http://127.0.0.1:8000/requetteuserid/{{ infoutilisateur.id_utilisateur }}" class="active">Requéttes</a>
+                    <a href="{% url 'deconnexion' %}">Se Déconnecter</a>
+                    <!-- <a href="#">History</a>
+                    <a href="#">Application</a>
+                    <a href="#">My Account</a>
+                    <a href="#">Documnets</a>
+
+                    <div class="links">
+                    <span>Quick Link</span>
+                    <a href="#">Paypal</a>
+                    <a href="#">EasyPay</a>
+                    <a href="#">SadaPay</a>
+                    </div> -->
+                </div>
+            </nav>
+
+            <div class="main-body">
+                
+
+                <div>
+                    <h2>Tableau De Bord</h2>
+                    <div class="promo_card">
+                        <h1>Bienvenue {{ infoutilisateur.nom_utilisateur }}</h1>
+                        <!-- <span>Lorem ipsum dolor sit amet.</span> -->
+                        <!-- <button>Se Connecter à Son Compte</button> -->
+                        <h4>Votre Solde Est De : {{ infoutilisateur.solde }}; Numéro De téléphone est : {{ infoutilisateur.numero_telephone }} et votre operateur est : {{ infoutilisateur.operateur }}</h4>
+                        <div><br></div>
+                        <a href="http://127.0.0.1:8000/initrequettes/{{ infoutilisateur.id_utilisateur }}/" type="button" style="background-color: white;padding: 10px;border-radius: inherit; color: black;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ModalForm">INITIER UNE REQUETTES
+                        </a>
+                        <div>
+                            <br>
+                        </div>
+                    </div>
+                    <div><br></div>
+                    <h1 class="display-1">Liste de toutes mes requétes effectuées</h1>
+                    <div><br></div>
+                    <div class="table-data">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>N*</th>
+                                    <th>Reciver name</th>
+                                    <th>Reciver number</th>
+                                    <th>Type Requétte</th>
+                                    <th>Amont</th>
+                                    <th>Date</th>
+                                    <th>Detail Requéte</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for requette in requette_user %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ requette.destinataire_name }}</td>
+                                        <td>{{ requette.destinataire_numero}}</td>
+                                        <td>{{ requette.type_requete }}</td>
+                                        <td>{{ requette.montant_requete }}</td>
+                                        <td>{{ requette.date }}</td>
+                                        <td style="text-align: center;">
+                                            <a href="http://127.0.0.1:8000/detailrequette/{{ requette.id_requette }}/" style="text-decoration: none;"><i class="fa-solid fa-eye"></i>&nbsp;&nbsp;&nbsp;&nbsp; Voir </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>
+
+                
+                
+            </div>
+
+            <div class="sidebar">
+                <h4>Account Balance</h4>
+                
+                <div class="balance">
+                    <i class="fas fa-dollar icon"></i>
+                    <div class="info">
+                        <h5>TOTAL T</h5>
+                        <span><i class="fas fa-dollar"></i>25,000.00</span>
+                    </div>
+                </div>
+            
+                <div class="balance">
+                    <i class="fa-solid fa-rupee-sign icon"></i>
+                    <div class="info">
+                        <h5>T UBA<=>UBA</h5>
+                        <span><i class="fa-solid fa-rupee-sign"></i>300,000.00</span>
+                    </div>
+                </div>
+                <div class="balance">
+                    <i class="fa-solid fa-sterling-sign icon"></i>
+                    <div class="info">
+                        <h5>T OM<=>OM</h5>
+                        <span><i class="fa-solid fa-sterling-sign"></i>30,000.00</span>
+                    </div>
+                </div>
+                <div class="balance">
+                    <i class="fa-solid fa-sterling-sign icon"></i>
+                    <div class="info">
+                        <h5>T MOMO<=>MOMO</h5>
+                        <span><i class="fa-solid fa-sterling-sign"></i>30,000.00</span>
+                    </div>
+                </div>
+                <div class="balance">
+                    <i class="fas fa-euro icon"></i>
+                    <div class="info">
+                        <h5>T UBA<=>OM</h5>
+                        <span><i class="fas fa-euro"></i>25,000.00</span>
+                    </div>
+                </div>
+
+                <div class="balance">
+                    <i class="fa-solid fa-indian-rupee-sign icon"></i>
+                    <div class="info">
+                        <h5>T UBA<=>MOMO</h5>
+                        <span><i class="fa-solid fa-indian-rupee-sign"></i>220,000.00</span>
+                    </div>
+                </div>
+                <div class="balance">
+                    <i class="fa-solid fa-sterling-sign icon"></i>
+                    <div class="info">
+                        <h5>T OM<=>MOMO</h5>
+                        <span><i class="fa-solid fa-sterling-sign"></i>30,000.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </body>
+</html>

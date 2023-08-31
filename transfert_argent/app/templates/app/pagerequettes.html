@@ -1,0 +1,58 @@
+{% extends "app/base.html" %}
+{% block content %}
+    <h2>Tableau De Bord</h2>
+    <div class="promo_card">
+        <h1>Bienvenue à notre interface de transfert d'argent</h1>
+        <!-- <span>Lorem ipsum dolor sit amet.</span> -->
+        <!-- <button>Se Connecter à Son Compte</button> -->
+        <a href="http://127.0.0.1:8000/login_register" type="button" style="background-color: white;padding: 10px;border-radius: inherit; color: black;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ModalForm">
+            Se Connecter/S'enregister
+        </a>
+        <div>
+            <br>
+        </div>
+    </div>
+    <div><br></div>
+    <h1 class="display-1">Liste de toutes les requettes en cours...</h1>
+    <div><br></div>
+    <div class="table-data">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>N*</th>
+                    <th>Sender name</th>
+                    <th>Sender number</th>
+                    <th>Type Requéte</th>
+                    <th>Reciver name </th>
+                    <th>Reciver number</th>
+                    <th>Amont</th>
+                    <th>Date</th>
+                    <th>Details </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for requette in requettes %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ requette.expediteur_name }}</td>
+                        <td>{{ requette.expediteur_numero }}</td>
+                        <td>{{ requette.type_requete }}</td>
+                        <td>{{ requette.destinataire_name }}</td>
+                        <td>{{ requette.destinataire_numero }}</td>
+                        <td>{{ requette.montant_requete }}</td>
+                        <td>{{ requette.date }}</td>
+                        <td>
+                            <a href="detailrequette/{{ requette.id_requette }}/" style="text-decoration: none;"><i class="fa-solid fa-eye"></i>&nbsp;&nbsp;&nbsp;&nbsp; Voir </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+{% endblock %}
+
+
+
+{% block js %}
+
+{% endblock %}

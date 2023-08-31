@@ -1,0 +1,57 @@
+{% extends "app/base.html" %}
+{% block content %}
+    <h2>Tableau De Bord</h2>
+    <div class="promo_card">
+        <h1>Bienvenue à notre interface de transfert d'argent</h1>
+        <!-- <span>Lorem ipsum dolor sit amet.</span> -->
+        <!-- <button>Se Connecter à Son Compte</button> -->
+        <a href="http://127.0.0.1:8000/login_register" type="button" style="background-color: white;padding: 10px;border-radius: inherit; color: black;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ModalForm">
+            Se Connecter/S'enregister
+        </a>
+        <div>
+            <br>
+        </div>
+    </div>
+    <div><br></div>
+    <h1 class="display-1">Liste de tous les utilisateurs</h1>
+    <div><br></div>
+    <div class="table-data">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>N*</th>
+                    <th>Non</th>
+                    <th>N*Teléphone</th>
+                    <th>Courriel</th>
+                    <th>Operateur</th>
+                    <th>Solde</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for users in utilisateurs %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ users.nom_utilisateur }}</td>
+                        <td>{{ users.numero_telephone }}</td>
+                        <td>{{ users.courriel }}</td>
+                        <td>{{ users.operateur }}</td>
+                        <td>{{ users.solde }}</td>
+                        <td>
+                            <a href="http://127.0.0.1:8000/update/{{ users.id_utilisateur }}/"><i class='far fa-edit'></i></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&#124;
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="http://127.0.0.1:8000/delete/{{ users.id_utilisateur }}/"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+{% endblock %}
+
+
+
+{% block js %}
+
+{% endblock %}
