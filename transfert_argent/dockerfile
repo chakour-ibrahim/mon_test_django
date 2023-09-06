@@ -1,0 +1,21 @@
+# On utilise l'image de base Python
+FROM python:3.11.5-alpine
+
+ENV PYTHONUNBUFFERED=1
+# On définit le répertoire de travail à l'intérieur du conteneur
+WORKDIR /app
+
+# On copie le fichier requirements.txt dans le conteneur
+COPY requirements.txt .
+
+# On installe les dépendances de notre projet Django
+RUN pip install -r requirements.txt
+
+# On copie tout le contenu de notre projet Django dans le conteneur
+COPY . /app
+
+# On xpose le port sur lequel votre application Django s'exécute
+EXPOSE 8000
+
+# On définit la commande pour exécuter votre application Django
+CMD ["python ", "manage.py", "runserver"]
