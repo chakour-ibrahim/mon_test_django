@@ -12,10 +12,10 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # On copie tout le contenu de notre projet Django dans le conteneur
-COPY . /app
+COPY . .
 
 # On xpose le port sur lequel votre application Django s'exécute
 EXPOSE 8000
 
 # On définit la commande pour exécuter votre application Django
-CMD ["python ", "manage.py", "runserver"]
+CMD ["python ", "manage.py", "runserver", "127.0.0.1:8080"]

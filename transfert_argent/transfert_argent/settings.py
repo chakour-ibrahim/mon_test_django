@@ -89,7 +89,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'montestbd',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
         'USER': 'ibrahim_chakour',
         'PASSWORD': 'chakour1234',
